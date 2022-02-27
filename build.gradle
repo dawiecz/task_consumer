@@ -1,0 +1,30 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'pl.dawiecz.math'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'com.udojava',name: 'EvalEx', version: '2.7'
+    implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.36'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    testImplementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.8'
+    testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.0-groovy-3.0'
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+    useJUnitPlatform()
+}
