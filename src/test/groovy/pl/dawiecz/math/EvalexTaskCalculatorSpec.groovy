@@ -7,11 +7,11 @@ import spock.lang.Subject
 
 class EvalexTaskCalculatorSpec extends Specification {
     @Subject
-    EvalexTaskCalculator stringCalculator = new EvalexTaskCalculator()
+    def taskCalculator = new EvalexTaskCalculator()
 
     def "should calculate operation"() {
         expect:
-            stringCalculator.calculate(new Task(value)) == result
+            taskCalculator.calculate(new Task(value)) == result
         where:
             value   || result
             "3-2*3" || -3.0
@@ -20,14 +20,14 @@ class EvalexTaskCalculatorSpec extends Specification {
 
     def "should throw exception when operation is incorrect"() {
         when:
-            stringCalculator.calculate(new Task(value))
+            taskCalculator.calculate(new Task(value))
         then:
             thrown(exception)
         where:
             value  || exception
-            "/3-2" || Expression.ExpressionException
-            "*5+5" || Expression.ExpressionException
-            "5/"   || Expression.ExpressionException
-            "9/0"  || ArithmeticException
+            "/3-2" || TaskCannotBeCalculated
+            "*5+5" || TaskCannotBeCalculated
+            "5/"   || TaskCannotBeCalculated
+            "9/0"  || TaskCannotBeCalculated
     }
 }

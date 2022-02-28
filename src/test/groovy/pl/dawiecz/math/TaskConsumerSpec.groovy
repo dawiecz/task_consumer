@@ -6,11 +6,11 @@ import spock.lang.Specification
 import spock.lang.Subject
 
 class TaskConsumerSpec extends Specification {
-    public static final int MAX_SIZE = 5
+    def MAX_SIZE = 5
+    def taskQueue = new TaskQueue(MAX_SIZE)
+    def taskFactory = new TaskFactory()
+    def taskCalculator = new EvalexTaskCalculator()
 
-    TaskQueue taskQueue = new TaskQueue(MAX_SIZE)
-    TaskFactory taskFactory = new TaskFactory()
-    TaskCalculator taskCalculator = new EvalexTaskCalculator()
     @Subject
     TaskConsumer taskConsumer = new TaskConsumer(taskQueue, taskCalculator)
 

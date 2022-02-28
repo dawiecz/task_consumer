@@ -7,20 +7,20 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import static java.util.Optional.ofNullable;
 
-public class TaskQueue {
+class TaskQueue {
     private final LinkedBlockingQueue<Task> tasks;
     private final int maxSize;
 
-    public TaskQueue(int maxSize) {
+    TaskQueue(int maxSize) {
         this.tasks = new LinkedBlockingQueue<>(maxSize);
         this.maxSize = maxSize;
     }
 
-    public Optional<Task> poll(){
+    Optional<Task> poll(){
         return ofNullable(tasks.poll());
     }
 
-    public boolean put(Task task){
+    boolean put(Task task){
         try{
             tasks.add(task);
             return true;
@@ -29,11 +29,11 @@ public class TaskQueue {
         }
     }
 
-    public int getSize(){
+    int getSize(){
         return tasks.size();
     }
 
-    public int getMaxSize() {
+    int getMaxSize() {
         return maxSize;
     }
 }

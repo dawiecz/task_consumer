@@ -6,13 +6,12 @@ import spock.lang.Specification
 import spock.lang.Subject
 
 class TaskProducerSpec extends Specification {
-    public static final int MAX_SIZE = 5
-
-    TaskFactory taskFactory = new TaskFactory()
-    TaskQueue taskQueue = new TaskQueue(MAX_SIZE)
+    def MAX_SIZE = 5
+    def taskFactory = new TaskFactory()
+    def taskQueue = new TaskQueue(MAX_SIZE)
 
     @Subject
-    TaskProducer taskProducer = new TaskProducer(taskFactory, taskQueue)
+    def taskProducer = new TaskProducer(taskFactory, taskQueue)
 
     def "should produce tasks"() {
         when:
